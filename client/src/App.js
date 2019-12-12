@@ -24,9 +24,14 @@ class App extends Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/login" component={Login}/>
-              <PrivateRoute exact path="/dashboard" name="rahul" component={Dashboard} />
+              {/* <Route exact path="/" component={Landing} /> */}
+              <Route exact path="/" component={Login} />
+              <PrivateRoute
+                exact
+                path="/dashboard"
+                name="rahul"
+                component={Dashboard}
+              />
             </Switch>
           </div>
         </Router>

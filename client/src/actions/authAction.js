@@ -36,7 +36,11 @@ export const loginUser = userData => dispatch => {
           notificationLength: NotificationNumber
         })
       );
+
       dispatch(setCurrentComponent(<Profile />));
+      dispatch({
+        type: CLEAR_ERRORS
+      });
     })
     .catch(err => {
       console.log(err);

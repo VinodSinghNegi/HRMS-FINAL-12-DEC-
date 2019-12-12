@@ -54,16 +54,20 @@ export const saveUser = userdata => async dispatch => {
       });
     });
 };
+
 export const changePassword = credential => async dispatch => {
   Axios.post("/changepassword", { credential })
-    .then(() => {
-      console.log("changed");
+    .then(val => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: { msg: val.data }
+      });
     })
     .catch(err => {
-      console.log("error");
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       });
     });
 };
+

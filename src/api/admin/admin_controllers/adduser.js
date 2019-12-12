@@ -38,9 +38,9 @@ const addUser = async (req, res, next) => {
     newUser.kraAttributes = arr;
     const token = jwt.sign({ userdata: newUser }, "secretKey");
     const email = newUser.email;
-    const verify = `http://localhost:5000/user/verifylogin/${token}`;
+    const verify = `http://localhost:3006/user/verifylogin/${token}`;
     console.log("verify", verify);
-   
+
     await mailer(email, token, verify);
 
     // const user = new User(newUser);

@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ChangePassword(props) {
+  console.log(props);
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: "",
@@ -45,12 +46,6 @@ function ChangePassword(props) {
   const handleChange = event => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-
-  //   setCredentials({
-  //     email: email,
-  //     newpassword: values.newpassword,
-  //     oldpassword: values.oldpassword
-  //   });
 
   const handleClickShowOldPassword = () => {
     setValues({ ...values, showoldPassword: !values.showoldPassword });
@@ -126,8 +121,9 @@ function ChangePassword(props) {
           />
         </FormControl>
         <br />
+        {props.error}
         <br />
-
+        <br />
         <Button
           type="submit"
           variant="contained"
@@ -146,8 +142,10 @@ function ChangePassword(props) {
     </div>
   );
 }
+
 const mapStateToProps = state => ({
-  email: state.auth.user.userdata.email
+  email: state.auth.user.userdata.email,
+  error: state.errors
 });
 export default connect(mapStateToProps, {
   setCurrentComponent,

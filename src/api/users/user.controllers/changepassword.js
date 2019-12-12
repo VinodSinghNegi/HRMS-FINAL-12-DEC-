@@ -10,24 +10,25 @@ const changePass = async (req, res, next) => {
     User.findOne({ email }).then(async user => {
       // Check if user exists
       if (!user) {
-        return res.status(404).json({ emailnotfound: "Email not found" });
+        return res.status(404).json("Email not found");
       }
       // Check password
-      bcrypt
-        .compare(oldpassword, user.password)
-        .then(async isMatch => {
-          if (isMatch) {
-            const newpass = await bcrypt.hash(newpassword, 8);
-            user.password = newpass;
-            user.save();
-          }
-        })
-        .catch(res.send("error in changing password"));
+      const isMatch = await bcrypt.compare(oldpassword, user.password);
+
+      if (isMatch) {
+        const newpass = await bcrypt.hash(newpassword, 8);
+
+        user.password = newpass;
+        user.save();
+
+        return res.status(200).json("Password changed successfully");
+      } else {
+        res.status(400).json("Email or Password does not match");
+      }
     });
   } catch (e) {
     console.log("err", e);
-    res.send("wrong token catch");
+    res.status(400).json("Email or Password does not match");
   }
 };
-
 module.exports = { changePass };
