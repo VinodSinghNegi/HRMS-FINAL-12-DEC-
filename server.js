@@ -50,5 +50,6 @@ app.use(designationSeeder);
 app.use(adminSeeder);
 app.use(notificationSeeder);
 
+ 
 const port = process.env.PORT || 3006;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
