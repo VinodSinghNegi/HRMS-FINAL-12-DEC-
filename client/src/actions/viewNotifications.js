@@ -1,5 +1,6 @@
 import { GET_NOTIFICATIONS, GET_ERRORS } from "./types";
-import Axios from "axios";
+import Axios from "../api/axios/axios";
+
 import { flush } from "./flushRedux";
 
 export const getNotifications = () => dispatch => {

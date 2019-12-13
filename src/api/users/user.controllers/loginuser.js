@@ -6,6 +6,7 @@ const user = require("../../users/user.model");
 const Notification =require('../../notification/notification.model')
 
 const login = async (req, res) => {
+  console.log(req.body)
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation

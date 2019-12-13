@@ -1,6 +1,7 @@
 import { VIEW_MY_TEAM, GET_ERRORS } from "./types";
-import Axios from "axios";
-import {flush} from './flushRedux';
+import Axios from "../api/axios/axios";
+
+import { flush } from "./flushRedux";
 
 export const viewMyTeam = skip => dispatch => {
   Axios.get(`/showteam/${skip}`)
@@ -11,8 +12,8 @@ export const viewMyTeam = skip => dispatch => {
       });
     })
     .catch(err => {
-      if(err.response.data.error==='Please authenticate'){
-        dispatch(flush())
+      if (err.response.data.error === "Please authenticate") {
+        dispatch(flush());
       }
       dispatch({
         type: GET_ERRORS,

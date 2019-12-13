@@ -1,4 +1,5 @@
-import Axios from "axios";
+import Axios from "../api/axios/axios";
+
 import { KRA_REQUEST, UPDATE_KRA, GET_ERRORS } from "./types";
 import { setCurrentComponent } from "./componentActions";
 import KraRequest from "../components/kraRequest";

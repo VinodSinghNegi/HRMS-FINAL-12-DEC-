@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from "../api/axios/axios";
+// import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import {
   GET_ERRORS,
@@ -20,15 +21,19 @@ import Profile from "../components/myprofile";
 import React from "react";
 // Login - get user token
 export const loginUser = userData => dispatch => {
+  console.log("0000");
+
   axios
     .post("/login", userData)
     .then(res => {
+      console.log("response", res.data);
       // Set token to localStorage
       const { token, userdata, NotificationNumber } = res.data;
 
-      localStorage.setItem("jwtToken", token);
+      const lc = localStorage.setItem("jwtToken", token);
       // Set token to Auth header
       setAuthToken(token);
+      console.log("1111", lc);
       // Decode token to get user data and Set current user
       dispatch(
         setCurrentUser({
@@ -36,6 +41,7 @@ export const loginUser = userData => dispatch => {
           notificationLength: NotificationNumber
         })
       );
+      console.log("2222");
 
       dispatch(setCurrentComponent(<Profile />));
       dispatch({
@@ -46,7 +52,7 @@ export const loginUser = userData => dispatch => {
       console.log(err);
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err
       });
     });
 };

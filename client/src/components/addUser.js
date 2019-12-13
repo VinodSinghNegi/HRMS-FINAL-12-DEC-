@@ -212,7 +212,7 @@ function CustomizedSteppers(props) {
         selectedDepartment.name === undefined ||
         selectedDesignation.name === undefined ||
         selectedkraAttributes[0] === undefined ||
-        selectedreportingManager === undefined
+        selectedreportingManager.name === undefined
       ) {
         alert("please choose all fields");
         return false;

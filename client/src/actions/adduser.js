@@ -1,5 +1,6 @@
 import { DROPDOWN_DATA, FORMDATA, GET_ERRORS } from "./types";
-import Axios from "axios";
+import Axios from "../api/axios/axios";
+
 import { setCurrentComponent } from "./componentActions";
 import Alluser from "../components/viewUser";
 import React from "react";
@@ -70,4 +71,3 @@ export const changePassword = credential => async dispatch => {
       });
     });
 };
-
