@@ -29,7 +29,7 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
-
+ 
 app.use(showemploye);
 app.use(userRouters);
 app.use(kraRouter);
@@ -40,6 +40,8 @@ app.use(kraAttributesSeeder);
 app.use(designationSeeder);
 app.use(adminSeeder);
 app.use(notificationSeeder);
-
+app.get('/', (req, res)=>{
+res.send('server is connected'});
+ 
 const port = process.env.PORT || 3006;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
